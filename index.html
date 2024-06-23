@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Days Until Draft</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #countdown {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Days Until Draft</h1>
+    <div id="countdown"></div>
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2024-08-24T10:00:00-04:00'); // August 24th, 10:00 AM EST
+            const now = new Date();
+            const timeInterval = targetDate - now;
+
+            if (timeInterval <= 0) {
+                document.getElementById('countdown').innerText = 'The draft has started!';
+            } else {
+                const days = Math.floor(timeInterval / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeInterval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeInterval % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeInterval % (1000 * 60)) / 1000);
+                document.getElementById('countdown').innerText =
+                    `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
